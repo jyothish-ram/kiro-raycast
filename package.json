@@ -58,6 +58,7 @@
     {
       "name": "extensions",
       "title": "Show Installed Extensions",
+      "subtitle": "Kiro",
       "description": "Manage Installed Extensions",
       "mode": "view"
     },
