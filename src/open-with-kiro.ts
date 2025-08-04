@@ -24,7 +24,10 @@ const getSelectedPathFinderItems = async () => {
   const paths = await runAppleScript(script);
   // AppleScript returns lists as space-separated by default
   // Split by spaces and filter out empty strings
-  return paths.trim().split(/\s+/).filter(path => path.length > 0);
+  return paths
+    .trim()
+    .split(/\s+/)
+    .filter((path) => path.length > 0);
 };
 
 export default async function main() {
