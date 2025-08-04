@@ -14,11 +14,7 @@ async function ensureKiroRulesFile(projectPath: string): Promise<void> {
 }
 
 // Apply a kiro rule to the project, integrating with escwxyz/kiro-directory
-async function applyKiroRule(
-  projectPath: string,
-  ruleContent: string,
-  replace: boolean
-): Promise<void> {
+async function applyKiroRule(projectPath: string, ruleContent: string, replace: boolean): Promise<void> {
   const kiroRulesPath = path.join(projectPath, ".kirorules");
 
   if (replace) {
@@ -34,11 +30,7 @@ export async function run(uri: string, context: KiroDirectoryContext) {
   try {
     const projectDir = uri.split("file://").slice(1).join("/");
     await ensureKiroRulesFile(projectDir);
-    await applyKiroRule(
-      projectDir,
-      context.ruleContent,
-      context.replace ?? true
-    );
+    await applyKiroRule(projectDir, context.ruleContent, context.replace ?? true);
   } catch (error) {
     console.error("Error applying kiro rules:", error);
     await showHUD("Failed to apply kiro rules");

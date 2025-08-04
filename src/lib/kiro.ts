@@ -75,18 +75,10 @@ export class KiroCLI {
     this.cliFilename = cliFilename;
   }
   installExtensionByIDSync(id: string) {
-    child_process.execFileSync(this.cliFilename, [
-      "--install-extension",
-      id,
-      "--force",
-    ]);
+    child_process.execFileSync(this.cliFilename, ["--install-extension", id, "--force"]);
   }
   uninstallExtensionByIDSync(id: string) {
-    child_process.execFileSync(this.cliFilename, [
-      "--uninstall-extension",
-      id,
-      "--force",
-    ]);
+    child_process.execFileSync(this.cliFilename, ["--uninstall-extension", id, "--force"]);
   }
 }
 
@@ -94,9 +86,7 @@ export function getKiroCLI(): KiroCLI {
   return new KiroCLI(getKiroCLIFilename());
 }
 
-async function getPackageJSONInfo(
-  filename: string
-): Promise<PackageJSONInfo | undefined> {
+async function getPackageJSONInfo(filename: string): Promise<PackageJSONInfo | undefined> {
   try {
     if (await fileExists(filename)) {
       const packageJSONData = await afs.readFile(filename, {
@@ -139,10 +129,7 @@ async function getPackageJSONInfo(
 
 export async function getLocalExtensions(): Promise<Extension[] | undefined> {
   const extensionsRootFolder = path.join(os.homedir(), ".kiro/extensions");
-  const extensionsManifestFilename = path.join(
-    extensionsRootFolder,
-    "extensions.json"
-  );
+  const extensionsManifestFilename = path.join(extensionsRootFolder, "extensions.json");
   if (await fileExists(extensionsManifestFilename)) {
     const data = await afs.readFile(extensionsManifestFilename, {
       encoding: "utf-8",

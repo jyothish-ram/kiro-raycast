@@ -1,6 +1,6 @@
 # Kiro Changelog
 
-## [1.1.1] - 2025-08-05
+## [1.1.1] - {PR_MERGE_DATE}
 
 ### Improvements & Fixes
 - Fixed grid navigation logic in pinned.tsx for correct 'down' movement
@@ -10,7 +10,7 @@
 - Combined Raycast API imports in preferences.ts for clarity
 - Improved refresh logic in extensions.tsx for reliable data re-fetch
 
-## [1.1.0] - 2025-07-XX
+## [1.1.0] - {PR_MERGE_DATE}
 
 ### Bug Fixes
 - Fixed SQL injection vulnerability in database operations

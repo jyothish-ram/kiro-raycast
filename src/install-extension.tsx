@@ -1,12 +1,4 @@
-import {
-  Action,
-  ActionPanel,
-  Color,
-  Icon,
-  List,
-  showToast,
-  Toast,
-} from "@raycast/api";
+import { Action, ActionPanel, Color, Icon, List, showToast, Toast } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
 import {
@@ -19,22 +11,13 @@ import { useLocalExtensions } from "./extensions";
 import { Extension } from "./lib/kiro";
 import { compactNumberFormat } from "./utils";
 
-function InstallExtensionAction(props: {
-  extension: GalleryExtension;
-  afterInstall?: () => void;
-}): JSX.Element {
+function InstallExtensionAction(props: { extension: GalleryExtension; afterInstall?: () => void }): JSX.Element {
   return (
-    <InstallExtensionByIDAction
-      extensionID={getFullExtensionID(props.extension)}
-      afterInstall={props.afterInstall}
-    />
+    <InstallExtensionByIDAction extensionID={getFullExtensionID(props.extension)} afterInstall={props.afterInstall} />
   );
 }
 
-function UninstallExtensionAction(props: {
-  extension: GalleryExtension;
-  afterUninstall?: () => void;
-}): JSX.Element {
+function UninstallExtensionAction(props: { extension: GalleryExtension; afterUninstall?: () => void }): JSX.Element {
   return (
     <UninstallExtensionByIDAction
       extensionID={getFullExtensionID(props.extension)}
@@ -128,9 +111,7 @@ function GalleryExtensionListItem(props: {
       return undefined;
     }
     const files = e.versions[0].files;
-    const file = files.find(
-      (f) => f.assetType === "Kiro.IDE.Services.Icons.Default"
-    );
+    const file = files.find((f) => f.assetType === "Kiro.IDE.Services.Icons.Default");
     if (file) {
       return file.source;
     }
@@ -140,16 +121,11 @@ function GalleryExtensionListItem(props: {
     return item?.value;
   };
   const installCount = getInstallCount();
-  const newstVersion =
-    e.versions && e.versions.length > 0 ? e.versions[0] : undefined;
+  const newstVersion = e.versions && e.versions.length > 0 ? e.versions[0] : undefined;
   const version = newstVersion ? newstVersion.version : undefined;
-  const lastUpdated = newstVersion
-    ? new Date(newstVersion.lastUpdated)
-    : undefined;
+  const lastUpdated = newstVersion ? new Date(newstVersion.lastUpdated) : undefined;
   const installedIDs = ie ? ie.map((ext) => ext.id.toLocaleLowerCase()) : [];
-  const alreadyInstalled = installedIDs.includes(
-    getFullExtensionID(e).toLocaleLowerCase()
-  );
+  const alreadyInstalled = installedIDs.includes(getFullExtensionID(e).toLocaleLowerCase());
   return (
     <List.Item
       title={{ value: e.displayName, tooltip: e.shortDescription }}
@@ -157,51 +133,31 @@ function GalleryExtensionListItem(props: {
       icon={iconURI() || "icon.png"}
       accessories={[
         {
-          tag: alreadyInstalled
-            ? { value: "Installed", color: Color.Blue }
-            : "",
+          tag: alreadyInstalled ? { value: "Installed", color: Color.Blue } : "",
           tooltip: alreadyInstalled ? "Already Installed" : "",
         },
         {
           icon: installCount !== undefined ? Icon.Download : undefined,
-          text:
-            installCount !== undefined
-              ? compactNumberFormat(installCount)
-              : undefined,
-          tooltip:
-            installCount !== undefined
-              ? `${compactNumberFormat(installCount)} Installs`
-              : undefined,
+          text: installCount !== undefined ? compactNumberFormat(installCount) : undefined,
+          tooltip: installCount !== undefined ? `${compactNumberFormat(installCount)} Installs` : undefined,
         },
         {
           tag: version,
-          tooltip: lastUpdated
-            ? `Last Update: ${lastUpdated?.toLocaleString()}`
-            : "",
+          tooltip: lastUpdated ? `Last Update: ${lastUpdated?.toLocaleString()}` : "",
         },
       ]}
       actions={
         <ActionPanel>
           <ActionPanel.Section>
             {alreadyInstalled ? (
-              <UninstallExtensionAction
-                extension={e}
-                afterUninstall={props.reloadLocalExtensions}
-              />
+              <UninstallExtensionAction extension={e} afterUninstall={props.reloadLocalExtensions} />
             ) : (
-              <InstallExtensionAction
-                extension={e}
-                afterInstall={props.reloadLocalExtensions}
-              />
+              <InstallExtensionAction extension={e} afterInstall={props.reloadLocalExtensions} />
             )}
-            <OpenExtensionByIDInKiroAction
-              extensionID={getFullExtensionID(e)}
-            />
+            <OpenExtensionByIDInKiroAction extensionID={getFullExtensionID(e)} />
           </ActionPanel.Section>
           <ActionPanel.Section>
-            <OpenExtensionByIDInBrowserAction
-              extensionID={getFullExtensionID(e)}
-            />
+            <OpenExtensionByIDInBrowserAction extensionID={getFullExtensionID(e)} />
             <Action.CopyToClipboard
               content={getFullExtensionID(e)}
               title="Copy Extension Id"
@@ -214,20 +170,14 @@ function GalleryExtensionListItem(props: {
   );
 }
 
-function getTotalResultCount(
-  data: GalleryQueryResult | undefined
-): number | undefined {
+function getTotalResultCount(data: GalleryQueryResult | undefined): number | undefined {
   if (!data || !data?.results || data.results.length <= 0) {
     return;
   }
   const result = data.results[0];
-  const resultCountObject = result.resultMetadata?.find(
-    (e) => e.metadataType === "ResultCount"
-  );
+  const resultCountObject = result.resultMetadata?.find((e) => e.metadataType === "ResultCount");
   if (resultCountObject) {
-    const totalCountObject = resultCountObject.metadataItems.find(
-      (e) => e.name === "TotalCount"
-    );
+    const totalCountObject = resultCountObject.metadataItems.find((e) => e.name === "TotalCount");
     if (totalCountObject) {
       return totalCountObject.count;
     }
@@ -253,9 +203,7 @@ export default function InstallExtensionRootCommand(): JSX.Element {
       <List.Section
         title="Found Extensions"
         subtitle={
-          totalExtensionCount !== undefined
-            ? `${extensions?.length}/${totalExtensionCount}`
-            : `${extensions?.length}`
+          totalExtensionCount !== undefined ? `${extensions?.length}/${totalExtensionCount}` : `${extensions?.length}`
         }
       >
         {extensions?.map((e) => (
@@ -306,8 +254,7 @@ function useGalleryQuery(searchText: string): {
   error: string | undefined;
   isLoading: boolean;
 } {
-  const url =
-    "https://marketplace.kiro.dev/_apis/public/gallery/extensionquery?api-version=3.0-preview.1";
+  const url = "https://marketplace.kiro.dev/_apis/public/gallery/extensionquery?api-version=3.0-preview.1";
   const headers = {
     "content-type": "application/json",
     "accept-encoding": "gzip",
@@ -349,16 +296,13 @@ function useGalleryQuery(searchText: string): {
   };
   const body = JSON.stringify(request);
   const execute = searchText.length > 0;
-  const { isLoading, error, data } = useFetch<GalleryQueryResult | undefined>(
-    url,
-    {
-      headers: headers,
-      body: body,
-      method: "POST",
-      keepPreviousData: false,
-      execute: execute,
-    }
-  );
+  const { isLoading, error, data } = useFetch<GalleryQueryResult | undefined>(url, {
+    headers: headers,
+    body: body,
+    method: "POST",
+    keepPreviousData: false,
+    execute: execute,
+  });
   return {
     isLoading: execute ? isLoading : false,
     error: error?.message,

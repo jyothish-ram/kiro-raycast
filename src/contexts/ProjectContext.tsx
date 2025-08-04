@@ -12,13 +12,7 @@ interface ProjectContextType {
 
 const ProjectContext = createContext<ProjectContextType | undefined>(undefined);
 
-export function ProjectProvider({
-  children,
-  launchContext,
-}: {
-  children: ReactNode;
-  launchContext?: LaunchContext;
-}) {
+export function ProjectProvider({ children, launchContext }: { children: ReactNode; launchContext?: LaunchContext }) {
   const openProject = async (uri: string, closeOtherWindows: boolean) => {
     try {
       if (closeOtherWindows) {
@@ -54,11 +48,7 @@ export function ProjectProvider({
     }
   };
 
-  return (
-    <ProjectContext.Provider value={{ openProject }}>
-      {children}
-    </ProjectContext.Provider>
-  );
+  return <ProjectContext.Provider value={{ openProject }}>{children}</ProjectContext.Provider>;
 }
 
 export function useProject() {

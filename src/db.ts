@@ -31,9 +31,7 @@ export function useRecentEntries() {
   );
 
   const entries = data && data.length ? data[0].entries : undefined;
-  const parsedEntries = entries
-    ? (JSON.parse(entries) as EntryLike[])
-    : undefined;
+  const parsedEntries = entries ? (JSON.parse(entries) as EntryLike[]) : undefined;
 
   async function removeEntry(entry: EntryLike) {
     if (!parsedEntries) {
@@ -42,17 +40,9 @@ export function useRecentEntries() {
     }
 
     try {
-      await saveEntries(
-        parsedEntries.filter(
-          (currentEntry) => !isSameEntry(currentEntry, entry)
-        )
-      );
+      await saveEntries(parsedEntries.filter((currentEntry) => !isSameEntry(currentEntry, entry)));
       await revalidate();
-      showToast(
-        Toast.Style.Success,
-        "Entry removed",
-        `Restart Kiro to sync the list in Kiro (optional)`
-      );
+      showToast(Toast.Style.Success, "Entry removed", `Restart Kiro to sync the list in Kiro (optional)`);
     } catch (error) {
       showToast(Toast.Style.Failure, "Failed to remove entry");
     }
@@ -77,11 +67,7 @@ export function useRecentEntries() {
       ) {
         await saveEntries([]);
         await revalidate();
-        showToast(
-          Toast.Style.Success,
-          "All entries removed",
-          `Restart Kiro to sync the list in Kiro (optional)`
-        );
+        showToast(Toast.Style.Success, "All entries removed", `Restart Kiro to sync the list in Kiro (optional)`);
       }
     } catch (error) {
       showToast(Toast.Style.Failure, "Failed to remove entries");

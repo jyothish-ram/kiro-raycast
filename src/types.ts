@@ -26,12 +26,7 @@ export type RemoteWorkspaceEntry = {
   label?: string;
 };
 
-export type EntryLike =
-  | FolderEntry
-  | FileEntry
-  | WorkspaceEntry
-  | RemoteEntry
-  | RemoteWorkspaceEntry;
+export type EntryLike = FolderEntry | FileEntry | WorkspaceEntry | RemoteEntry | RemoteWorkspaceEntry;
 
 export type RecentEntries = {
   entries: string;

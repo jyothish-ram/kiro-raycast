@@ -24,9 +24,7 @@ export function isFileEntry(entry: EntryLike): entry is FileEntry {
 
   try {
     const fileUrl = new URL(fileUri);
-    return (
-      existsSync(fileUrl.pathname) && fileUri.indexOf(".code-workspace") === -1
-    );
+    return existsSync(fileUrl.pathname) && fileUri.indexOf(".code-workspace") === -1;
   } catch (error) {
     return false;
   }
@@ -56,10 +54,7 @@ export function isWorkspaceEntry(entry: EntryLike): entry is WorkspaceEntry {
 
   try {
     const configUrl = new URL(workspace.configPath);
-    return (
-      existsSync(configUrl.pathname) &&
-      workspace.configPath.indexOf(".code-workspace") !== -1
-    );
+    return existsSync(configUrl.pathname) && workspace.configPath.indexOf(".code-workspace") !== -1;
   } catch (error) {
     return false;
   }
@@ -70,9 +65,7 @@ export function isRemoteEntry(entry: EntryLike): entry is RemoteEntry {
   return folderUri !== undefined && remoteAuthority !== undefined;
 }
 
-export function isRemoteWorkspaceEntry(
-  entry: EntryLike
-): entry is RemoteWorkspaceEntry {
+export function isRemoteWorkspaceEntry(entry: EntryLike): entry is RemoteWorkspaceEntry {
   const { workspace, remoteAuthority } = entry as RemoteWorkspaceEntry;
   return workspace !== undefined && remoteAuthority !== undefined;
 }
@@ -117,10 +110,7 @@ export function filterEntriesByType(filter: EntryType | null) {
 }
 
 export function filterUnpinnedEntries(pinnedEntries: EntryLike[]) {
-  return (entry: EntryLike) =>
-    pinnedEntries.find((pinnedEntry) =>
-      isDeepStrictEqual(pinnedEntry, entry)
-    ) === undefined;
+  return (entry: EntryLike) => pinnedEntries.find((pinnedEntry) => isDeepStrictEqual(pinnedEntry, entry)) === undefined;
 }
 
 export function getErrorMessage(error: unknown): string {

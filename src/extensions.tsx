@@ -10,22 +10,15 @@ import {
   UninstallExtensionByIDAction,
 } from "./extension-actions";
 
-function OpenExtensionInKiroAction(props: {
-  extension: Extension;
-}): JSX.Element {
+function OpenExtensionInKiroAction(props: { extension: Extension }): JSX.Element {
   return <OpenExtensionByIDInKiroAction extensionID={props.extension.id} />;
 }
 
-function OpenExtensionInBrowserAction(props: {
-  extension: Extension;
-}): JSX.Element {
+function OpenExtensionInBrowserAction(props: { extension: Extension }): JSX.Element {
   return <OpenExtensionByIDInBrowserAction extensionID={props.extension.id} />;
 }
 
-function ExtensionListItem(props: {
-  extension: Extension;
-  reloadExtension: () => void;
-}): JSX.Element {
+function ExtensionListItem(props: { extension: Extension; reloadExtension: () => void }): JSX.Element {
   const e = props.extension;
   return (
     <List.Item
@@ -38,9 +31,7 @@ function ExtensionListItem(props: {
         },
         {
           tag: e.version,
-          tooltip: e.installedTimestamp
-            ? `Installed:  ${new Date(e.installedTimestamp).toLocaleString()}`
-            : "",
+          tooltip: e.installedTimestamp ? `Installed:  ${new Date(e.installedTimestamp).toLocaleString()}` : "",
         },
       ]}
       actions={
@@ -69,10 +60,7 @@ function ExtensionListItem(props: {
             />
           </ActionPanel.Section>
           <ActionPanel.Section>
-            <UninstallExtensionByIDAction
-              extensionID={e.id}
-              afterUninstall={props.reloadExtension}
-            />
+            <UninstallExtensionByIDAction extensionID={e.id} afterUninstall={props.reloadExtension} />
           </ActionPanel.Section>
         </ActionPanel>
       }
@@ -85,24 +73,12 @@ export default function ExtensionsRootCommand(): JSX.Element {
   if (error) {
     showFailureToast(error, { title: "Error" });
   }
-  const extensionsSorted = extensions?.sort((a, b) =>
-    a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-  );
+  const extensionsSorted = extensions?.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
   return (
-    <List
-      isLoading={isLoading}
-      searchBarPlaceholder="Search Installed Extensions"
-    >
-      <List.Section
-        title="Installed Extensions"
-        subtitle={`${extensionsSorted?.length}`}
-      >
+    <List isLoading={isLoading} searchBarPlaceholder="Search Installed Extensions">
+      <List.Section title="Installed Extensions" subtitle={`${extensionsSorted?.length}`}>
         {extensionsSorted?.map((e) => (
-          <ExtensionListItem
-            key={e.id}
-            extension={e}
-            reloadExtension={refresh}
-          />
+          <ExtensionListItem key={e.id} extension={e} reloadExtension={refresh} />
         ))}
       </List.Section>
     </List>
