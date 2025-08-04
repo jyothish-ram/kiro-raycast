@@ -1,5 +1,16 @@
 import { getPreferenceValues } from "@raycast/api";
 
+import { Application } from "@raycast/api";
+
+interface ExtensionPreferences {
+  layout: "list" | "grid";
+  keepSectionOrder: boolean;
+  closeOtherWindows: boolean;
+  terminalApp: Application;
+  showGitBranch: boolean;
+  gitBranchColor: string;
+}
+
 const preferences = getPreferenceValues<ExtensionPreferences>();
 
 export const layout = preferences.layout;

@@ -97,6 +97,6 @@ function getPath() {
 
 async function saveEntries(entries: EntryLike[]) {
   const data = JSON.stringify({ entries });
-  const query = `INSERT INTO ItemTable (key, value) VALUES ('history.recentlyOpenedPathsList', '${data}');`;
-  await execFilePromise("sqlite3", [getPath(), query]);
+  const query = `UPDATE ItemTable SET value = ? WHERE key = 'history.recentlyOpenedPathsList'`;
+  await execFilePromise("sqlite3", [getPath(), query, data]);
 }

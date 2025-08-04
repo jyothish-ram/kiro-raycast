@@ -67,25 +67,27 @@ export function usePinnedEntries() {
     unpinAll: () => setEntries([]),
     moveUp: (entry: EntryLike) =>
       setEntries((previousEntries) => {
-        const i = previousEntries.findIndex((e) => isDeepStrictEqual(e, entry));
-        previousEntries.splice(
-          i - 1,
-          2,
-          previousEntries[i],
-          previousEntries[i - 1]
-        );
-        return previousEntries;
+        const newEntries = [...previousEntries];
+        const i = newEntries.findIndex((e) => isDeepStrictEqual(e, entry));
+        if (i > 0) {
+          [newEntries[i - 1], newEntries[i]] = [
+            newEntries[i],
+            newEntries[i - 1],
+          ];
+        }
+        return newEntries;
       }),
     moveDown: (entry: EntryLike) =>
       setEntries((previousEntries) => {
-        const i = previousEntries.findIndex((e) => isDeepStrictEqual(e, entry));
-        previousEntries.splice(
-          i,
-          2,
-          previousEntries[i + 1],
-          previousEntries[i]
-        );
-        return previousEntries;
+        const newEntries = [...previousEntries];
+        const i = newEntries.findIndex((e) => isDeepStrictEqual(e, entry));
+        if (i < newEntries.length - 1) {
+          [newEntries[i], newEntries[i + 1]] = [
+            newEntries[i + 1],
+            newEntries[i],
+          ];
+        }
+        return newEntries;
       }),
     getAllowedMovements: (entry: EntryLike) =>
       getAllowedMovements(entries, entry),
