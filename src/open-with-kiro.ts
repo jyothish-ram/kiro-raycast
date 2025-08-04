@@ -56,6 +56,8 @@ export default async function main() {
 
     await closeMainWindow();
   } catch (error) {
-    await showFailureToast(error, { title: "Failed opening selected Finder or Path Finder item" });
+    await showFailureToast(error, {
+      title: "Failed opening selected Finder or Path Finder item",
+    });
   }
 }

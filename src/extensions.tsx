@@ -1,10 +1,4 @@
-import {
-  Action,
-  ActionPanel,
-  Color,
-  List,
-  Toast,
-} from "@raycast/api";
+import { Action, ActionPanel, Color, List, Toast } from "@raycast/api";
 import { showFailureToast } from "@raycast/utils";
 import { useState, useEffect } from "react";
 import { getErrorMessage } from "./utils";
@@ -127,7 +121,7 @@ export function useLocalExtensions(): {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const refresh = () => {
     // Trigger re-fetch by updating refresh trigger
-    setRefreshTrigger(prev => prev + 1);
+    setRefreshTrigger((prev) => prev + 1);
   };
 
   useEffect(() => {

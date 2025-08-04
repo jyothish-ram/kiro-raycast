@@ -10,7 +10,7 @@
 - Combined Raycast API imports in preferences.ts for clarity
 - Improved refresh logic in extensions.tsx for reliable data re-fetch
 
-## [1.1.0] - {PR_MERGE_DATE}
+## [1.1.0] - 2025-07-XX
 
 ### Bug Fixes
 - Fixed SQL injection vulnerability in database operations
