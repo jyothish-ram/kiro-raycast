@@ -1,5 +1,10 @@
 # Kiro Changelog
 
+## [1.1.11] - {PR_MERGE_DATE}
+
+### Code Quality Improvement
+- Removed unused imports in extension-actions.tsx, extensions.tsx, and open-with-kiro.ts to resolve TypeScript warnings
+
 ## [1.1.1] - {PR_MERGE_DATE}
 
 ### Improvements & Fixes

@@ -1,7 +1,6 @@
 import { showToast, Toast, Action, Icon, Color, confirmAlert, Alert, showHUD } from "@raycast/api";
 import { showFailureToast } from "@raycast/utils";
 import { getKiroCLI } from "./lib/kiro";
-import { getErrorMessage } from "./utils";
 
 export function InstallExtensionByIDAction(props: { extensionID: string; afterInstall?: () => void }): JSX.Element {
   const handle = async () => {
