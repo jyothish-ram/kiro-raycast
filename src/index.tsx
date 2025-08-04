@@ -9,7 +9,7 @@ import {
   LaunchProps,
   Color,
 } from "@raycast/api";
-import { showFailureToast } from "@raycast/utils";
+
 import { useEffect, useState } from "react";
 import { basename, dirname } from "path";
 import tildify from "tildify";
@@ -58,7 +58,7 @@ export default function Command(
 
   if (error) {
     console.log(error);
-    showFailureToast(error, { title: "Failed to load recent projects" });
+    showToast(Toast.Style.Failure, "Failed to load recent projects");
   }
 
   return (

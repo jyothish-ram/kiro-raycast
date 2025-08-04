@@ -1,10 +1,12 @@
 import {
+  showToast,
+  Toast,
   open,
   closeMainWindow,
   getSelectedFinderItems,
   getFrontmostApplication,
 } from "@raycast/api";
-import { runAppleScript, showFailureToast } from "@raycast/utils";
+import { runAppleScript } from "@raycast/utils";
 import { getCurrentFinderPath } from "./utils/apple-scripts";
 
 // Function to get selected Path Finder items
@@ -49,6 +51,10 @@ export default async function main() {
 
     await closeMainWindow();
   } catch (error) {
-    showFailureToast(error, { title: "Could not open with Kiro" });
+    await showToast({
+      title: "Failed opening selected Finder or Path Finder item",
+      style: Toast.Style.Failure,
+      message: error instanceof Error ? error.message : String(error),
+    });
   }
 }
