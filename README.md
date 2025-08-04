@@ -2,7 +2,9 @@
 
 Control Kiro directly from Raycast.
 
-![Kiro screenshot](./metadata/kiro-1.png,./metadata/kiro-2.png,./metadata/kiro-3.png,)
+![Kiro screenshot 1](./metadata/kiro-1.jpeg)
+![Kiro screenshot 2](./metadata/kiro-2.jpeg)
+![Kiro screenshot 3](./metadata/kiro-3.jpeg)
 
 ## Features
 
@@ -14,21 +16,27 @@ Control Kiro directly from Raycast.
 ## Commands
 
 ### Search Recent Projects
+
 Browse through your recent Kiro projects with search and filtering capabilities. Pin important projects for quick access.
 
 ### Open with Kiro
+
 Open the currently selected Finder or Path Finder items with Kiro. If no items are selected, opens the current directory.
 
 ### Open New Window
+
 Open a new Kiro window using AppleScript automation.
 
 ### Show Installed Extensions
+
 View all installed Kiro extensions with details like version, publisher, and installation date.
 
 ### Install Extension
+
 Search and install extensions from the Kiro marketplace.
 
 ### Commands
+
 Execute Kiro command palette commands directly from Raycast (requires Raycast for Kiro extension).
 
 ## Keyboard Shortcuts
