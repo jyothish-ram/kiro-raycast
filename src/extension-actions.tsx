@@ -78,9 +78,7 @@ export function OpenExtensionByIDInKiroAction(props: {
   );
 }
 
-export function OpenExtensionByIDInBrowserAction(props: {
-  extensionID: string;
-}): JSX.Element {
+export function OpenExtensionByIDInBrowserAction(props: { extensionID: string }): JSX.Element {
   const url = `https://marketplace.visualstudio.com/items?itemName=${props.extensionID}`;
   return (
     <Action.OpenInBrowser

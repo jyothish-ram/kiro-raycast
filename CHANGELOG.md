@@ -3,6 +3,7 @@
 ## [1.1.2] - 2025-01-08
 
 ### Bug Fixes
+
 - Fixed marketplace URL endpoints to use correct VS Code marketplace API
 - Updated extension marketplace URLs from non-existent kiro.dev to visualstudio.com
 - Fixed marketplace connection issues preventing extension installation
@@ -10,11 +11,13 @@
 - Fixed Kiro CLI path from `/bin/kiro` to `/bin/code` to match actual binary location
 
 ### Code Quality Improvement
+
 - Removed unused imports in extension-actions.tsx, extensions.tsx, and open-with-kiro.ts to resolve TypeScript warnings
 
 ## [1.1.1] - 2025-08-05
 
 ### Improvements & Fixes
+
 - Fixed grid navigation logic in pinned.tsx for correct 'down' movement
 - Improved error handling: replaced manual showToast with showFailureToast in multiple files
 - Fixed AppleScript path parsing in open-with-kiro.ts to handle spaces correctly
@@ -25,6 +28,7 @@
 ## [1.1.0] - {PR_MERGE_DATE}
 
 ### Bug Fixes
+
 - Fixed SQL injection vulnerability in database operations
 - Fixed infinite loop condition in waitForFileExists function
 - Fixed state mutation bugs in pinned entries management
@@ -34,6 +38,7 @@
 - Fixed React component rendering issues in grid-or-list components
 
 ### Code Quality Improvements
+
 - Updated ESLint configuration to use standard Raycast config
 - Replaced manual error handling with showFailureToast utility
 - Updated AppleScript imports to use @raycast/utils
@@ -43,6 +48,7 @@
 ## [1.0.0] - {PR_MERGE_DATE}
 
 ### Features Added
+
 - **Search Recent Projects**: Browse and open recent projects from Kiro
 - **Open with Kiro**: Open selected Finder items with Kiro
 - **Open New Window**: Open a new Kiro window
