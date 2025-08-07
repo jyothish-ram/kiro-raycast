@@ -1,11 +1,18 @@
 # Kiro Changelog
 
-## [1.1.11] - {PR_MERGE_DATE}
+## [1.1.2] - 2025-01-08
+
+### Bug Fixes
+- Fixed marketplace URL endpoints to use correct VS Code marketplace API
+- Updated extension marketplace URLs from non-existent kiro.dev to visualstudio.com
+- Fixed marketplace connection issues preventing extension installation
+- Updated metadata and icon references for proper marketplace integration
+- Fixed Kiro CLI path from `/bin/kiro` to `/bin/code` to match actual binary location
 
 ### Code Quality Improvement
 - Removed unused imports in extension-actions.tsx, extensions.tsx, and open-with-kiro.ts to resolve TypeScript warnings
 
-## [1.1.1] - {PR_MERGE_DATE}
+## [1.1.1] - 2025-08-05
 
 ### Improvements & Fixes
 - Fixed grid navigation logic in pinned.tsx for correct 'down' movement

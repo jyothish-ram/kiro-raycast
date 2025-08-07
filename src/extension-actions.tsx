@@ -78,8 +78,10 @@ export function OpenExtensionByIDInKiroAction(props: {
   );
 }
 
-export function OpenExtensionByIDInBrowserAction(props: { extensionID: string }): JSX.Element {
-  const url = `https://marketplace.kiro.dev/items?itemName=${props.extensionID}`;
+export function OpenExtensionByIDInBrowserAction(props: {
+  extensionID: string;
+}): JSX.Element {
+  const url = `https://marketplace.visualstudio.com/items?itemName=${props.extensionID}`;
   return (
     <Action.OpenInBrowser
       title="Open in Browser"
